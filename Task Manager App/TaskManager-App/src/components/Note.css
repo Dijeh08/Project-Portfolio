@@ -1,0 +1,18 @@
+.note{
+    float: left;
+    margin: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.note p{
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.buttonContainer{
+    align-self: center;
+}

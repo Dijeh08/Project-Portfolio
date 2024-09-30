@@ -1,0 +1,11 @@
+.container{
+  background-color: white;
+  box-shadow: 5px 10px ash;
+  border-radius: 5px;
+  margin: 30px 33%;
+}
+
+.container h1{
+  padding: 10px;
+  text-align: center;
+}

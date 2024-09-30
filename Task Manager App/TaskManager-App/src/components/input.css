@@ -1,0 +1,36 @@
+.input-container{
+    margin: 10px 35%;
+    display: flex;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    
+}
+input{
+    padding: 10px;
+    
+    margin: 20px;
+    font-size: 1.1rem;
+    
+    border-radius: 5px;
+    
+   
+}
+
+button{
+    background-color:  #16a085; 
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0px 33%;
+    border-width: 0px;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 10px;
+    
+    
+}
+
+button:hover{
+    background-color: aliceblue;
+    color: #16a085;
+}
+
+
