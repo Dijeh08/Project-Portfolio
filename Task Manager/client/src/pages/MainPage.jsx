@@ -17,8 +17,7 @@ function MainPage() {
   const [isCompleteDeletePressedState, setCompleteDeletePressedState] = useState(false);
   const [isEditPressed, setIsEditPressed] = useState(false);
   const [isMarkPressed, setMarkPressed] = useState(false);
-  const [isTimeForActivity, setIsTimeForActivity] = useState(false);
-  const [time, setTime] = useState(0);
+
   const {email} = location.state;
 
   // GET request for remote todo-list in index.js
@@ -34,6 +33,7 @@ function MainPage() {
             }}, {signal: controller.signal});
 
         const todoNote = response.data
+
         if (isUncomplete) {
           setNotes(todoNote);
         }
@@ -99,51 +99,23 @@ function MainPage() {
     setIsComplete(true);
     }
     
-  function handleDeleteClick(state) {
+  function handleDeleteClick() {
     setUnCompleteDeletePressedState(!isUnCompleteDeletePressedState);
   }
 
-  function handleCompleteDeleteClick(state) {
+  function handleCompleteDeleteClick() {
     setCompleteDeletePressedState(!isCompleteDeletePressedState)
   }
 
-  function EditedState(state) {
+  function EditedState() {
     setIsEditPressed(!isEditPressed);
    
   }
   
-  function markState(state) {
+  function markState() {
     setMarkPressed(!isMarkPressed);
   }
-
-  
-
-   const emailHandler = async(req, res) => {
-          await axios({
-            origin: "*",
-            method: 'post',
-            url: 'http://localhost:3000/email',
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-            data: {
-              time: time,
-          }}, {signal: controller.signal});}
-  
-  useEffect(() => {
-    // Use setTimeout to update the message after 60000 milliseconds (1 min)
-    setTimeout(() => {
-      setTime(new Date());
-    }, 60000);
-    if (Date.parse(time.toString())  > Date.parse('Sun Oct 27 2024 11:33:30 GMT+0100 (West Africa Standard Time)')) {
-      console.log('yea');
-      // emailHandler()
-      setIsTimeForActivity(true);
-    }
-    console.log(time)
-    
-  }, [isTimeForActivity? null: time]); // Empty dependency array ensures the effect runs only once
-  
+ 
   return(
   <>
   <div className='bg-warning text-white p-3'>

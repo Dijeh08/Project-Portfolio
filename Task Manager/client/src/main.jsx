@@ -30,8 +30,8 @@ console.log(import.meta.env)
 createRoot(document.getElementById('root')).render(
   
   <GoogleOAuthProvider clientId= {import.meta.env.VITE_SECRET_CLIENT_ID}>
-    <StrictMode>
+    
     <RouterProvider router={router}/>
-    </StrictMode>
+    
     </GoogleOAuthProvider>,
 )

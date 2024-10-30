@@ -13,6 +13,7 @@ function Note(props) {
     const [isCompleteDeletePressedState, setCompleteDeletePressedState] = useState(false);
     const [isSubmitPressed, setIsSubmitPressed] = useState(false);
     const [isMarkPressed, setMarkPressed] = useState(false);
+    
    
     // const [dateTime, setDateTime] = useState(null);
     const contentArray = (props.content).split(' ') 
@@ -66,8 +67,6 @@ function Note(props) {
 
     function handleEditClick() {
         setIsEditPressed(true);  
-        
-        
     }
 
     function handleChange(event) {
@@ -131,7 +130,7 @@ function Note(props) {
        
     }
     
-    const dateData = new Date(props.date)
+    const dateData = new Date(props.time)
    let localDate = dateData.toDateString()
    let localTime = dateData.toTimeString().split(" ")
     return(

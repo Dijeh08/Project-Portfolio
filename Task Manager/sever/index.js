@@ -15,7 +15,7 @@ env.config();
 const _dirname = dirname(fileURLToPath(import.meta.url))
 const app = express();
 const port = 3000;
-const resend = new Resend('re_iXbmc2fK_GsXx6vzzMSk6yzyHpvM2CsYu');
+const resend = new Resend(process.env.RESEND_KEY);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 const masterKey = process.env.SECRET_KEY;
@@ -50,24 +50,6 @@ app.post("/all", async(req, res) => {
   
 });
 
-// Handle Notification
-app.post("/email", async (req, res) => {
-  const {time} = req.body;
-  console.log(time)
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: ["dijehobinna@gmail.com"],
-    subject: "hello world",
-    html: "<strong>Hello it worked</strong>",
-  });
-
-  if (error) {
-    return res.status(400).json({ error });
-  }
-
-  res.status(200).json({ data });
-});
-
 // Delete a ToDo content in the dataBase
 app.delete("/note/:id", async (req, res) => {
   const id = req.params.id;
@@ -84,7 +66,7 @@ app.delete("/note/:id", async (req, res) => {
 // Post note 
 app.post("/note", async(req, res) => {
   const {title, content, date, email, time} = req.body;
-  console.log(title, content, date, email, time)
+  // console.log(title, content, date, email, time)
   try {
     await db.query('INSERT INTO todo_list (title, content, date, email, time) VALUES($1, $2, $3, $4, $5)', [title, content, date, email, time]);
     res.status(201).send('saved');
@@ -183,7 +165,7 @@ app.post("/login", async(req, res) => {
 app.patch("/note/:id", async(req, res) => {
   const paramsID = req.params.id;
   const {title, content, time} = req.body;
-  console.log(title, content, time)
+  // console.log(title, content, time)
   try {
      // Gets the note with the id
     const result = await db.query('SELECT * FROM public.todo_list WHERE id = $1', [paramsID]);
@@ -219,7 +201,7 @@ app.get("/complete/:id", async(req, res) => {
   const result = (await db.query('SELECT * FROM todo_list WHERE id = $1', [paramsID])).rows[0];
   
   // Insert Into Completed Table
-  await db.query('INSERT INTO completed (id, title, content,email, date) VALUES ($1, $2, $3, $4, $5)', [result.id, result.title, result.content, result.email, date]);
+  await db.query('INSERT INTO completed (id, title, content,email, date, time) VALUES ($1, $2, $3, $4, $5, $6)', [result.id, result.title, result.content, result.email, date, result.time]);
 
   // Remove the note from ToDO
   await db.query('DELETE FROM todo_list WHERE id = $1', [paramsID]);
