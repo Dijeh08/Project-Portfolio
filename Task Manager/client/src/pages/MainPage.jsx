@@ -36,6 +36,7 @@ function MainPage() {
 
         if (isUncomplete) {
           setNotes(todoNote);
+          
         }
         
     } catch (error) {
