@@ -29,9 +29,10 @@ const router = createBrowserRouter([
 console.log(import.meta.env)
 createRoot(document.getElementById('root')).render(
   
-  <GoogleOAuthProvider clientId= {import.meta.env.VITE_SECRET_CLIENT_ID}>
+  <Authentication />
+  // <GoogleOAuthProvider clientId= {import.meta.env.VITE_SECRET_CLIENT_ID}>
     
-    <RouterProvider router={router}/>
+  //   <RouterProvider router={router}/>
     
-    </GoogleOAuthProvider>,
+  //   </GoogleOAuthProvider>,
 )
